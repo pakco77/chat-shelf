@@ -6,5 +6,5 @@ if source "$SHELF_INSTALL_ROOT/scripts/runtime.sh"; then
 else
   SHELF_INSTALL_RESULT=1
 fi
-if [[ -t 0 ]]; then read -r '?按回车关闭此窗口。'; fi
+if [[ -t 0 ]]; then read -r '?按回车关闭此窗口。 / Press Return to close this window.'; fi
 exit "$SHELF_INSTALL_RESULT"

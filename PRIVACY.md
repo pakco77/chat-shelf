@@ -1,25 +1,25 @@
-# 对话集测试版的数据说明
+# ChatShelf privacy and data
 
-开发者：pakco。适用版本：0.9.6-beta.1。
+[简体中文](PRIVACY.zh-CN.md) · Developer: **pakco** · Version **0.9.6-beta.2**
 
-## 保存什么
+## What is stored
 
-对话集在你的 Mac 上保存你主动收录的对话 ID、来源、标题、时间、可选末段或末图预览，以及文件夹、项目、常用、归档、回收站和撤销记录。默认目录是 `~/Library/Application Support/ChatShelf/`。程序发布包从空索引开始。
+ChatShelf stores the chats you choose to index on your Mac: conversation IDs, sources, titles, timestamps, optional last-message text or image previews, and your folders, projects, favorites, archive, trash, and undo history. The default directory is `~/Library/Application Support/ChatShelf/`. Release packages start with an empty index.
 
-## 如何使用
+## How it is used
 
-这些数据用于本机搜索、整理、预览、备份和打开原对话。本机服务只监听回环地址。插件不包含开发者遥测、广告或开发者云端存储，不读取客户端内部数据库、cookies 或登录凭据。
+This data supports local search, organization, previews, backups, and opening original chats. The local service listens only on a loopback address. The plugin has no developer telemetry, advertising, or developer cloud storage. It does not read the client's internal databases, cookies, or login credentials.
 
-通过 Codex 的当前对话调用聊天列表、读取消息和导入工具时，相关内容会进入宿主工具处理流程，受你所用客户端和账户的数据政策约束。安装包和依赖下载会连接 GitHub 或 npm；打开原始聊天会交给对应客户端处理。
+When a Codex chat calls the host's chat-list, message-reading, or import tools, the relevant content enters the host's tool-processing workflow and is subject to the data policies of your client and account. This is not the same as offline processing. Downloading the package or dependencies connects to GitHub or npm. Opening an original chat hands the request to the corresponding client.
 
-## 预览与连接
+## Previews and connections
 
-JSON 文件在本机界面中解析，只提交索引、最多 180 字的末段预览和符合大小限制的内嵌图片，不保存完整聊天正文。图片指针没有可用像素时只显示“图片未同步”。
+JSON files are parsed in the local interface. It submits only the index, a last-message preview of up to 180 characters, and embedded images within the size limits to the local service; it does not save the full conversation text. If an image pointer has no usable pixels, the interface shows “Image not synced.”
 
-若宿主允许提供连接，插件可在本机保存当前用户可读的连接会话配置。它不属于对话备份或发布包，不能分享给其他人。当前测试版的后台同步和 ChatGPT 原生定位尚未接通。
+If the host allows a connection, the plugin may save a connection-session configuration on the local device, readable only by the current user. It is excluded from chat backups and release packages and should not be shared. Background sync and native ChatGPT navigation are not connected in this beta.
 
-## 保存多久及如何控制
+## Retention and your controls
 
-索引没有自动过期时间。垃圾桶属于可恢复的本机整理状态，不会删除平台上的聊天，也不会自动永久清除索引。卸载插件不会自动删除数据。你可以先导出备份，再自行删除本机数据目录；删除后恢复依赖你保留的备份。
+The index does not expire automatically. Trash is a recoverable local organization state: it neither deletes chats on their original platform nor permanently clears the index. Uninstalling the plugin does not automatically delete your data. You can export a backup and then delete the local data directory yourself; restoring it afterward depends on the backup you kept.
 
-公开反馈时请删除私人标题、内容及标识，不上传真实备份或连接文件。问题反馈入口：https://github.com/pakco77/chat-shelf/issues
+Before posting feedback, remove private titles, content, and identifiers. Do not upload real backups or connection files. Report issues through [GitHub Issues](https://github.com/pakco77/chat-shelf/issues).

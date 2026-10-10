@@ -9,7 +9,7 @@ const manifest = JSON.parse(readFileSync(join(root,'package.json'),'utf8'));
 const env = {...process.env, PATH:dirname(process.execPath) + ':' + (process.env.PATH ?? '')};
 function run(command,args,options={}) {
   const result = spawnSync(command,args,{cwd:root,env,encoding:'utf8',timeout:120000,...options});
-  if (result.error || result.status !== 0) throw new Error(result.error?.message || result.stderr?.trim() || `${command} 未完成（${result.status}）`);
+  if (result.error || result.status !== 0) throw new Error(result.error?.message || result.stderr?.trim() || `${command} 未完成 / did not complete (${result.status})`);
   return result.stdout?.trim();
 }
 function which(command) {
@@ -34,29 +34,29 @@ function dependenciesPresent(directory) {
   } catch { return false; }
 }
 try {
-  if (process.platform !== 'darwin') throw new Error('这个测试版安装器适用于 macOS。');
+  if (process.platform !== 'darwin') throw new Error('这个测试版安装器适用于 macOS。 / This beta installer supports macOS.');
   const resources = process.env.CODEX_ELECTRON_RESOURCES_PATH;
   const cli = [process.env.CODEX_CLI_PATH,
     resources && join(resources,'codex-cli/CodexCLI.app/Contents/MacOS/codex'),
     '/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex',
     '/Applications/Codex.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex',
     which('codex')].find(path=>path && existsSync(path));
-  if (!cli) throw new Error('没有找到 Codex 客户端。请先安装并打开 Codex 桌面客户端，再运行 Install.command。');
+  if (!cli) throw new Error('没有找到 Codex 客户端。请先安装并打开 Codex 桌面客户端，再运行 Install.command。 / Codex was not found. Install and open the Codex desktop app, then run Install.command again.');
   if (!dependenciesPresent(root)) {
     const npm = which('npm');
-    if (!npm) throw new Error('源码包需要 npm 安装依赖。请安装 Node（含 npm），或下载已包含依赖的 macOS 测试包。');
-    console.log('正在按锁文件安装运行依赖；需要联网。');
+    if (!npm) throw new Error('源码包需要 npm 安装依赖。请安装 Node（含 npm），或下载已包含依赖的 macOS 测试包。 / Installing from source requires npm. Install Node with npm, or download the macOS beta package with dependencies included.');
+    console.log('正在按锁文件安装运行依赖；需要联网。 / Installing runtime dependencies from the lockfile; an internet connection is required.');
     run(npm,['ci','--omit=dev','--ignore-scripts','--no-audit','--no-fund'],{stdio:'inherit',timeout:300000});
-    if (!dependenciesPresent(root)) throw new Error('依赖安装未完成，请检查 npm 的错误后重试。');
+    if (!dependenciesPresent(root)) throw new Error('依赖安装未完成，请检查 npm 的错误后重试。 / Dependencies are still incomplete. Check the npm error and try again.');
   }
   run('/bin/zsh',[join(root,'scripts/start.sh'),'--check']);
-  console.log(`正在安装对话集 ${manifest.version}。已有整理数据保持原样。`);
+  console.log(`正在安装对话集 ${manifest.version}。已有整理数据保持原样。 / Installing ChatShelf ${manifest.version}. Your existing organization data will be preserved.`);
   const marketplaces = JSON.parse(run(cli,['plugin','marketplace','list','--json']));
   const previous = marketplaces.marketplaces?.find(marketplace=>marketplace.name === 'pakco-chat-shelf');
   const previousSource = previous?.marketplaceSource;
   let replacedSource = false;
   if (previous && resolve(previous.root) !== root) {
-    if (previousSource?.sourceType !== 'local' || !previousSource.source) throw new Error('这个插件市场已经使用其他来源。请在 Codex 插件设置中确认更新来源后再安装本地测试包。');
+    if (previousSource?.sourceType !== 'local' || !previousSource.source) throw new Error('这个插件市场已经使用其他来源。请在 Codex 插件设置中确认更新来源后再安装本地测试包。 / This marketplace already uses another source. Review its source in Codex plugin settings before installing this local beta package.');
     run(cli,['plugin','marketplace','remove','pakco-chat-shelf','--json']);
     replacedSource = true;
   }
@@ -64,21 +64,21 @@ try {
   catch (error) {
     if (replacedSource) {
       try { run(cli,['plugin','marketplace','add',previousSource.source,'--json']); }
-      catch { console.error('原安装来源目前无法恢复；已安装的插件缓存和整理数据没有被删除。'); }
+      catch { console.error('原安装来源目前无法恢复；已安装的插件缓存和整理数据没有被删除。 / The previous install source could not be restored. The installed plugin cache and your organization data have not been deleted.'); }
     }
     throw error;
   }
   const installed = JSON.parse(run(cli,['plugin','add','chat-shelf@pakco-chat-shelf','--json']));
-  if (installed.pluginId !== 'chat-shelf@pakco-chat-shelf' || installed.version !== manifest.version || !installed.installedPath) throw new Error('客户端没有确认安装预期版本，请检查客户端更新后重试。');
+  if (installed.pluginId !== 'chat-shelf@pakco-chat-shelf' || installed.version !== manifest.version || !installed.installedPath) throw new Error('客户端没有确认安装预期版本，请检查客户端更新后重试。 / Codex did not confirm the expected plugin version. Check for a client update and try again.');
   const cache = realpathSync(resolve(installed.installedPath));
-  if (!dependenciesPresent(cache)) throw new Error('客户端没有把运行依赖复制到插件缓存。请保留安装窗口信息并反馈；本次没有修改聊天数据。');
+  if (!dependenciesPresent(cache)) throw new Error('客户端没有把运行依赖复制到插件缓存。请保留安装窗口信息并反馈；本次没有修改聊天数据。 / Codex did not copy runtime dependencies into the plugin cache. Save the installer output when reporting this problem. Your chat data was not changed.');
   run('/bin/zsh',[join(cache,'scripts/start.sh'),'--check']);
   const listing = JSON.parse(run(cli,['plugin','list','--json']));
-  if (!listing.installed?.some(plugin=>plugin.pluginId === installed.pluginId && plugin.enabled === true && plugin.version === manifest.version)) throw new Error('插件已安装但没有启用，请在客户端插件设置中启用「对话集」。');
-  console.log('安装完成。请保留这个解压目录，后续更新仍会使用这个安装来源。');
-  console.log('回到 Codex 新建一个对话，发送：\n\n打开对话集，把当前可见的聊天标题收录进去\n');
-  console.log('如果新对话仍看不到插件，退出并重新打开客户端后再试。');
+  if (!listing.installed?.some(plugin=>plugin.pluginId === installed.pluginId && plugin.enabled === true && plugin.version === manifest.version)) throw new Error('插件已安装但没有启用，请在客户端插件设置中启用「对话集」。 / The plugin is installed but disabled. Enable ChatShelf (对话集) in Codex plugin settings.');
+  console.log('安装完成。请保留这个解压目录，后续更新仍会使用这个安装来源。 / Installation complete. Keep this extracted folder; it remains the source for future updates.');
+  console.log('回到 Codex 新建一个对话，发送： / Start a new chat in Codex and send:\n\n打开对话集，把当前可见的聊天标题收录进去\n\nOpen ChatShelf (对话集) and import the chat titles currently visible to your tools.\n');
+  console.log('如果新对话仍看不到插件，退出并重新打开客户端后再试。 / If the new chat cannot see the plugin, quit and reopen Codex, then try again.');
 } catch (error) {
-  console.error('安装未完成：' + error.message);
+  console.error('安装未完成 / Installation incomplete: ' + error.message);
   process.exitCode = 1;
 }

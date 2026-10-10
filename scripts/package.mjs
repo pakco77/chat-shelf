@@ -10,7 +10,7 @@ const output = resolve(process.argv.slice(2).find(arg => arg !== '--source') ?? 
 if (existsSync(output)) throw new Error('输出目录已存在，请选择一个新目录');
 mkdirSync(output, { recursive:true });
 // 分享包只装载程序文件；开发快照、历史、备份和个人验证记录不进入包。
-for (const name of ['.agents','.codex-plugin','.mcp.json','Install.command','INSTALL.md','LICENSE','PRIVACY.md','README.md','assets','mcp.json','package.json','package-lock.json','scripts','self-check.mjs','server.mjs','client.mjs','skills','store.mjs','web']) cpSync(join(root,name),join(output,name),{recursive:true});
+for (const name of ['.agents','.codex-plugin','.mcp.json','Install.command','INSTALL.md','INSTALL.zh-CN.md','LICENSE','PRIVACY.md','PRIVACY.zh-CN.md','README.md','README.zh-CN.md','assets','mcp.json','package.json','package-lock.json','scripts','self-check.mjs','server.mjs','client.mjs','skills','store.mjs','web']) cpSync(join(root,name),join(output,name),{recursive:true});
 writeFileSync(join(output,'.gitignore'),'node_modules/\n.data/\n.demo-data/\n*.zip\n.DS_Store\n');
 writeFileSync(join(output,'snapshot.json'),JSON.stringify({capturedAt:null,coverage:'本机聊天索引，等待导入',chats:[]},null,2)+'\n');
 const modules = sourceOnly ? null : realpathSync(join(root,'node_modules'));

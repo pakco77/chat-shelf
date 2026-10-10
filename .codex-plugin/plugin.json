@@ -1,6 +1,6 @@
 {
   "name": "chat-shelf",
-  "version": "0.9.6-beta.1",
+  "version": "0.9.6-beta.2",
   "description": "把 ChatGPT 与 Codex 对话按项目收成一本本集子，快速找回并继续原对话。",
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",

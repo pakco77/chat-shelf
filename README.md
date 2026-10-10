@@ -1,74 +1,117 @@
-# 对话集 · ChatShelf
+# ChatShelf · 对话集
 
-**把散落的 AI 对话按项目收好，下次打开，接着做。**
+**Find the conversation. Pick up the project.**
 
-由 **pakco** 开发的免费、本机保存的 Codex 插件。MIT 开源，无需购买插件或订阅插件服务；宿主客户端的账户与使用条件另计。
+A free Codex desktop plugin that collects your AI conversations into a project bookshelf. Keep related ChatGPT and Codex chats together, recognize the right one from its preview, and continue supported Codex chats in the desktop client.
 
-**当前版本：0.9.6-beta.1 · macOS + Codex 桌面客户端。** 这是公开测试版，尚未上架官方插件目录。
+**English** · [简体中文](README.zh-CN.md)
 
-[下载免费测试版](https://github.com/pakco77/chat-shelf/releases/tag/v0.9.6-beta.1) · [15 秒演示](https://github.com/pakco77/chat-shelf/releases/download/v0.9.6-beta.1/chat-shelf-demo-15s.mp4) · [反馈问题](https://github.com/pakco77/chat-shelf/issues)
+macOS + Codex with plugin support · Free · MIT · By **pakco** · **0.9.6-beta.2**
 
-![对话集示例界面](assets/demo-poster.jpg)
+## 30-second quick start
 
-## 安装：先下载完整包
+Already have the Codex desktop app installed and signed in? Start here:
 
-1. 在 Mac 上安装并登录支持插件的 Codex 桌面客户端。
-2. 从上面的发布页下载 **`chat-shelf-0.9.6-beta.1-macos.zip`**，解压。不要选 GitHub 自动生成的 `Source code` 压缩包；完整包已包含程序依赖。
-3. 把整个解压目录放在「文稿」等保留位置，双击 **`Install.command`**；详见 [INSTALL.md](INSTALL.md)。安装脚本会寻找已有的客户端运行环境，不要求管理员权限，不安装系统服务，不改动你的对话。
-4. 在 Codex 中新建一个对话，说：
+1. **[Download the complete macOS package](https://github.com/pakco77/chat-shelf/releases/download/v0.9.6-beta.2/chat-shelf-0.9.6-beta.2-macos.zip).** It includes the plugin's dependencies.
+2. **Unzip, keep the folder, double-click `Install.command`.** Wait for the installation-complete message.
+3. **Start a new Codex chat and send:**
 
-   > 打开对话集，把当前工具可见的聊天标题收录进去；保留我的文件夹、项目和已有整理。若后台同步不可用，请使用当前对话提供的聊天列表工具导入，并说明实际收录范围。
+   > Open ChatShelf (对话集) and import the chat titles currently visible to your tools.
 
-第一次收录后，新对话会出现在「待收纳」。把对话归入同一项目，下次从项目书架或「接着上次」找到它。
+Your imported chats appear in **Inbox**. Open one and choose **Move to** to file it under a project.
 
-**安装成功不等于已取得你的聊天记录。** 收录需要当前客户端提供聊天列表工具，或由你主动导入文件；后台自动同步在本测试版中尚未完成真实环境接通。
+This is a three-step quick-start guide; download and first-import time vary with your connection and client. Use the complete ZIP above, not GitHub's automatic “Source code” download. [Detailed setup & troubleshooting →](INSTALL.md)
 
-如果希望 Codex 协助安装，可把这段话连同下载后的完整包交给它：
+[Download / release notes](https://github.com/pakco77/chat-shelf/releases/tag/v0.9.6-beta.2) · [Watch the 15-second demo](https://github.com/pakco77/chat-shelf/releases/download/v0.9.6-beta.2/chat-shelf-demo-15s.mp4) · [Report an issue](https://github.com/pakco77/chat-shelf/issues)
 
-> 请安装 https://github.com/pakco77/chat-shelf 的 0.9.6-beta.1 免费测试版。先阅读 README 和 INSTALL.md，使用带依赖的 macOS 发布包，执行本地安装脚本，保留已有 ChatShelf 数据。启用后在新对话打开对话集，并按技能说明收录当前工具可见的聊天标题；不能访问的来源请明确说明。
+## Your next step, right at the top
 
-## 可以做什么
+The home shelf gives you a clear place to resume: your most recently updated chat, its project, and a **Continue** button. The colored folders keep the rest of your work within reach.
 
-- **按项目整理**：ChatGPT 与 Codex 作为来源标签，同一项目的对话放在一起。
-- **快速找回**：标题和已导入末段搜索、常用、项目书架，以及首页「接着上次」。
-- **轻松收纳**：文件夹拖动排序、自定义颜色、项目归入、批量整理、拖入垃圾桶、恢复和撤销。
-- **在客户端继续**：macOS 上的 Codex 对话交给原生客户端打开，不跳转 ChatGPT 网页。
-- **本机备份**：保存整理状态、导出备份、恢复；已收录记录不因时间久而自动移除。
-- **跟随语言**：界面支持简体中文与英文，优先使用宿主语言；其他语言暂回退英文。用户自己的内容保持原文。
+![ChatShelf home with the resume panel and six colored folders](assets/screenshots/en-01-shelf.jpg)
 
-## 本次测试范围
+*Actual interface, fictional demo data. “Pick up again” currently uses the most recently updated chat, rather than a cross-client reading history.*
 
-| 能力 | 当前状态 |
+## Keep one project together
+
+A plan in ChatGPT and its implementation in Codex can belong to the same project. Sources stay visible on the cards. Choose the project spine to focus on the conversations for that piece of work.
+
+![One project containing both Codex and ChatGPT conversation cards](assets/screenshots/en-02-project.jpg)
+
+**The payoff:** return to a project with its related conversations already collected in one place.
+
+## Recognize the conversation before opening it
+
+Open a card to see its imported last-message excerpt or image. Move it into a project from that same preview; the red stamp confirms where you filed it. For supported macOS Codex chats, **Continue** hands the conversation to the native desktop client.
+
+![Expanded conversation preview with context and project filing controls](assets/screenshots/en-03-preview.jpg)
+
+**The payoff:** use the preview to decide whether this is the conversation you wanted, then file it without losing your place. Previews require imported content; title-only records never invent a summary.
+
+## Search the words you remember
+
+Press **⌘K** and search titles and imported last-message excerpts. Matching words are highlighted so you can scan the results and recognize the right conversation.
+
+![Search results with matching words highlighted](assets/screenshots/en-04-search.jpg)
+
+**The payoff:** find a useful fragment even when you do not remember the exact title. Search covers the local index and imported previews, not every message in your account.
+
+## Make the shelf yours
+
+Choose your own folder colors and drag folders into the order that suits your work. Names, colors, order, and project assignments stay in your local data and backups.
+
+![Folder color customization in the real interface](assets/screenshots/en-05-customize.jpg)
+
+**The payoff:** give your active work a familiar place on the shelf. Folder ordering also supports **Option + arrow keys**.
+
+## Tidy up with a way back
+
+Drag a card—or a selection of cards—onto the large Trash target. Open Trash to restore them, or use Undo immediately. Archiving and Trash organize the local index; original platform conversations stay intact.
+
+![Trash view with conversation restoration controls](assets/screenshots/en-06-trash.jpg)
+
+**The payoff:** keep the shelf focused and recover a conversation when you need it again.
+
+## See the flow in 15 seconds
+
+[![Play the ChatShelf demo](assets/demo-poster.jpg)](https://github.com/pakco77/chat-shelf/releases/download/v0.9.6-beta.2/chat-shelf-demo-15s.mp4)
+
+The silent, 1080p demo shows project selection, preview, filing, and the Continue entry using fictional data. The demo video has Chinese interface text; the screenshots above show the English interface. Demo records do not open real conversations.
+
+## What this beta supports
+
+| Capability | Current support |
 | --- | --- |
-| 文件夹、项目、搜索、整理、撤销、回收站、备份恢复 | 可使用 |
-| 由当前 Codex 对话工具手动收录可见标题 | 工具可用时可使用；不是全量历史同步 |
-| 导入 ChatGPT 的 `conversations.json` 或索引 JSON | 可使用；完整正文不会保存到对话集 |
-| 末段或末图预览 | 需要导入对应内容；只有标题时不会伪造预览 |
-| macOS Codex 原生继续对话 | 原生打开请求已验证；加载由客户端处理，须有原对话访问权 |
-| 后台自动同步、ChatGPT 原生定位 | 尚未接通，依赖宿主允许的接口 |
-| Windows、Linux、Claude | 本次未验证，不列为支持平台 |
+| Projects, folders, favorites, search, colors and ordering | Available |
+| Local archive, Trash, restore, Undo, backup and recovery | Available |
+| Collect visible titles through the current Codex chat | Available when the host provides chat-list tools; not full-history collection |
+| Import ChatGPT `conversations.json`, an index JSON, or a ChatShelf backup | Available |
+| Last-message and image previews | Available when corresponding content has been imported |
+| Continue a macOS Codex chat in the native client | Native dispatch verified; the client controls access and loading |
+| Background automatic sync and native ChatGPT navigation | Not connected in this beta |
+| Windows, Linux and Claude | Not verified in this release |
 
-原生打开返回“已交给客户端”表示系统已接受请求。插件无法收到客户端随后加载对话的完整回执；原记录被删除、属于其他账户或设备时，仍可能由客户端报告失败。对话集中的条目和整理状态会保留。
+A successful handoff means the system accepted the native-open request. It does not confirm that the client subsequently loaded the original chat. A deleted record, a different account, or an unavailable device may still prevent opening it.
 
-「接着上次」当前使用最近更新的对话，不是跨客户端的最后阅读记录。单个本机索引当前最多 5,000 篇。示例视频使用虚构数据；示例对话不连接真实原文。
+The interface follows the host's Chinese or English locale; other locales currently fall back to English. Product names and your own chat, folder, and project names keep their original text. The current index supports up to 5,000 chats. Saved entries do not expire simply because they are old.
 
-## 导入更多对话
+## Collect your own conversations
 
-在界面选择「更多 → 导入对话」，或把 JSON 文件拖入窗口。支持 ChatGPT 导出的 `conversations.json`、对话集备份以及包含 `id`、`title`、`source` 的索引数组。
+The plugin starts empty. Ask Codex to collect titles visible to its current tools, or use **More → Import chats** and drop in your own JSON file. If chat-list tools are unavailable, file import remains available.
 
-导入仅整理本机索引，不会移动、归档或删除平台上的原始聊天。标题索引更新会保留现有项目、常用、归档、回收站及预览；原始记录不会因为它没出现在本次可见列表中而被删除。
+To add previews, explicitly ask Codex to retrieve the last visible message for the conversations you choose. Only actual returned content is used; a search summary is not substituted for a last-message preview. Refreshing titles preserves your existing organization and previews.
 
-需要末段预览时，可在 Codex 中明确说“补齐这些对话的最后可见消息预览”。只有宿主返回可确认的末条内容才能收录，不以列表摘要代替。聊天列表的覆盖范围由宿主决定，不能保证拿到全量历史。
+## Free, local, and open source
 
-## 数据与隐私
+ChatShelf has no plugin subscription, requires no model API key, and includes no developer telemetry. The host application's account requirements and charges are separate.
 
-默认数据目录：`~/Library/Application Support/ChatShelf/`。文件夹、项目、标题索引、末段预览、备份均保存在本机。整理动作不会修改原始平台记录。更新插件只替换程序，数据目录独立保留。
+Your index, organization, previews, and backups are stored by default in `~/Library/Application Support/ChatShelf/`. Asking Codex to collect or inspect records brings those records into the host's tool workflow; this is not a claim of entirely offline processing. [Read the data and privacy note →](PRIVACY.md)
 
-插件不收集遥测，不读取客户端内部数据库、cookies 或登录凭据，不把索引上传给开发者。使用 Codex 协助收录时，当前对话会按宿主工具权限处理这些内容；这不等同于离线处理。详见 [PRIVACY.md](PRIVACY.md)。
+Update by installing a new complete package; your local data is preserved. Save a backup first and open a new Codex chat after installation. Uninstall or disable the plugin through the client's plugin settings; the data folder is retained for recovery.
 
-## 从源码安装与开发
+## For contributors
 
-需要 macOS、Node.js 18+（建议使用仍受支持的 LTS）和 npm，以及可用的 Codex 客户端。源码包需要首次联网安装锁定的依赖；完整下载包已包含这些依赖。
+Source installs need macOS, Node.js 18+ (a supported LTS is recommended), npm, and Codex with plugin support:
 
 ```sh
 git clone https://github.com/pakco77/chat-shelf.git
@@ -77,32 +120,8 @@ npm ci --ignore-scripts
 zsh Install.command
 ```
 
-程序自检：
+Checks: `npm run check` and `npm run check:install`. The install check uses temporary user and plugin directories. Run `npm start` for the local interface at `127.0.0.1:4317`. See [INSTALL.md](INSTALL.md) for setup and recovery.
 
-```sh
-npm run check
-npm run check:install
-```
+Found a problem? [Open an issue](https://github.com/pakco77/chat-shelf/issues) with your macOS, client and plugin versions plus the steps to reproduce it. Keep private chat exports, backups and connection files out of public reports.
 
-独立预览使用 `npm start`，仅监听 `127.0.0.1:4317`。隔离示例可运行：
-
-```sh
-CHAT_SHELF_DATA="$PWD/.demo-data" npm run demo
-CHAT_SHELF_DATA="$PWD/.demo-data" CHAT_SHELF_PORT=4387 npm start
-```
-
-示例脚本只会写入指定的示例目录，不能覆盖已有真实数据。
-
-## 更新、卸载和反馈
-
-更新：先从「更多 → 保存备份」保存一份，再安装新版完整包；已有整理数据保留。已打开的旧页面需要重新打开，新对话才能取得新启用的插件工具。
-
-卸载：在 Codex 插件管理中卸载或禁用对话集。数据目录不会自动清除，便于重装或恢复。
-
-遇到问题，请在 [Issues](https://github.com/pakco77/chat-shelf/issues) 提供 macOS 版本、客户端版本、插件版本和复现步骤。不要公开上传真实对话导出、备份、连接会话文件或带私人标题的截图。
-
-## License
-
-[MIT](LICENSE) · Copyright © 2026 pakco.
-
-ChatShelf is a free, local-first conversation organizer for the Codex desktop app on macOS. Group chats by project, search imported previews, and hand supported Codex chats back to the native client. This beta does not promise automatic collection or full-history access. See the installation and support limits above.
+[MIT License](LICENSE) · Copyright © 2026 pakco. Distributed through this repository; not listed in the official plugin directory.

@@ -130,7 +130,7 @@ export function createDesktopClient(sessionFile) {
     if (!connecting) connecting = (async()=>{
       const config = definition(), env = {...config.env,...Object.fromEntries((config.env_vars ?? sessionVars).filter(key=>hostEnv[key]).map(key=>[key,hostEnv[key]]))};
       const transport = new StdioClientTransport({command:config.command,args:config.args,cwd:config.cwd,env,stderr:'ignore'});
-      const next = new Client({name:'chat-shelf-client',version:'0.9.6-beta.1'},{capabilities:{}});
+      const next = new Client({name:'chat-shelf-client',version:'0.9.6-beta.2'},{capabilities:{}});
       next.onclose = ()=>{ if (client === next) client=null; };
       try { await next.connect(transport,{signal,timeout:10000}); await next.listTools({}, {signal,timeout:10000}); client = next; return next; }
       catch (error) { await next.close().catch(()=>{}); throw error; }

@@ -100,7 +100,7 @@ function html() {
 function result(snapshot) {
   return { content:[{type:'text',text:snapshot.chats ? '对话集中有 ' + snapshot.chats.length + ' 条标题索引。' : snapshot.ok ? '已请求客户端定位原对话。' : snapshot.reason}], structuredContent:snapshot };
 }
-const mcp = new McpServer({name:'chat-shelf',version:'0.9.6-beta.1',icons}, {
+const mcp = new McpServer({name:'chat-shelf',version:'0.9.6-beta.2',icons}, {
   instructions:'对话集管理本机对话索引，ChatGPT 和 Codex 只是来源标签，可以放入同一文件夹及项目。归档与回收站只隐藏或恢复本机索引，项目也是本机整理层；不修改原生聊天、不永久删除、不宣称全量同步。可使用宿主聊天列表获取真实 ID、标题、最近时间；只有用户要求末段预览时，读取最后可见消息并提取最多 180 字的开头，传入 lastMessagePreview。末条消息含图片时，可读取宿主明确返回且对应末条消息的附件，传入最多 512 KB 的 PNG/JPEG/WebP/GIF data URL 到 lastMessageImage；只有图片指针而无像素时传 null。不要使用旧附件或猜测下载地址。不要把检索摘要或初始问题冒充末段，不读取其他正文、内部数据库或认证信息。宿主没有能力时使用用户提供的 JSON，不猜测 ID 或来源。',
   capabilities:{extensions:{'io.modelcontextprotocol/ui':{mimeTypes:['text/html;profile=mcp-app']}}},
 });

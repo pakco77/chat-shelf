@@ -18,6 +18,6 @@ for candidate in "${shelf_node_candidates[@]}"; do
   fi
 done
 if [[ -z "$SHELF_NODE" ]]; then
-  print -u2 '对话集需要 Node 18 或以上版本。请安装当前 Codex 桌面客户端，或安装 Node 后重试。'
+  print -u2 '对话集需要 Node 18 或以上版本。请安装当前 Codex 桌面客户端，或安装 Node 后重试。 / ChatShelf requires Node 18 or later. Install the current Codex desktop app, or install Node and try again.'
   return 1
 fi

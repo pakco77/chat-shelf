@@ -520,7 +520,7 @@ function addProject() {
 function about() {
   delete detail.dataset.chatKey; detail.className = 'sheet-dialog form-dialog';
   const chats = data.chats.filter(isActive).length;
-  detail.innerHTML = `<article class="sheet small-sheet about"><button class="sheet-close" data-action="close-dialog" aria-label="${esc(t('close'))}" data-i18n-aria-label="close">×</button><span class="seal about-seal" aria-hidden="true">对话<br>集印</span><h2 id="detail-title" class="sheet-title">对话集</h2><p class="about-line">${copy('aboutChatCount',{count:chats})} · ${copy('folderCount',{count:visibleBoxes().length})} · ${copy('projectCount',{count:projects().length})}</p><p class="about-text">${copy('aboutText')}</p>${isDemo() ? `<p class="about-text demo-note">${copy('demoAbout')}</p>` : ''}<details class="backup-location"><summary>${copy('backupLocation')}</summary><code>${esc(data.backupDirectory)}</code></details><p class="about-text">${copy('freePlugin')}</p><p class="about-sign">0.9.6-beta.1 · ${copy('developer')}</p></article>`;
+  detail.innerHTML = `<article class="sheet small-sheet about"><button class="sheet-close" data-action="close-dialog" aria-label="${esc(t('close'))}" data-i18n-aria-label="close">×</button><span class="seal about-seal" aria-hidden="true">对话<br>集印</span><h2 id="detail-title" class="sheet-title">对话集</h2><p class="about-line">${copy('aboutChatCount',{count:chats})} · ${copy('folderCount',{count:visibleBoxes().length})} · ${copy('projectCount',{count:projects().length})}</p><p class="about-text">${copy('aboutText')}</p>${isDemo() ? `<p class="about-text demo-note">${copy('demoAbout')}</p>` : ''}<details class="backup-location"><summary>${copy('backupLocation')}</summary><code>${esc(data.backupDirectory)}</code></details><p class="about-text">${copy('freePlugin')}</p><p class="about-sign">0.9.6-beta.2 · ${copy('developer')}</p></article>`;
   showSheet(null);
 }
 function syncExplanation(sync) {
@@ -828,7 +828,7 @@ document.addEventListener('submit', async event => {
 });
 async function start() {
   try {
-    if (embedded) { const init = await rpc('ui/initialize', {appInfo:{name:'chat-shelf', version:'0.9.6-beta.1'}, appCapabilities:{availableDisplayModes:['inline','fullscreen']}, protocolVersion:'2026-01-26'}); hostLocale = init.hostContext?.locale; updateLanguage(); window.parent.postMessage({jsonrpc:'2.0', method:'ui/notifications/initialized', params:{}}, '*'); if (init.hostContext?.availableDisplayModes?.includes('fullscreen') && init.hostContext.displayMode !== 'fullscreen') await rpc('ui/request-display-mode', {mode:'fullscreen'}); }
+    if (embedded) { const init = await rpc('ui/initialize', {appInfo:{name:'chat-shelf', version:'0.9.6-beta.2'}, appCapabilities:{availableDisplayModes:['inline','fullscreen']}, protocolVersion:'2026-01-26'}); hostLocale = init.hostContext?.locale; updateLanguage(); window.parent.postMessage({jsonrpc:'2.0', method:'ui/notifications/initialized', params:{}}, '*'); if (init.hostContext?.availableDisplayModes?.includes('fullscreen') && init.hostContext.displayMode !== 'fullscreen') await rpc('ui/request-display-mode', {mode:'fullscreen'}); }
     data = await call('get_shelf'); enter = 'intro'; render();
     document.body.classList.add('ready');
   } catch (error) {

@@ -28,6 +28,8 @@ function run(command,args,env,cwd=root) {
 function install(directory,env,expectedVersion=version) {
   const output = run('/bin/zsh',[join(directory,'Install.command')],env);
   assert.match(output,/安装完成/);
+  assert.match(output,/Installation complete/);
+  assert(output.includes('Open ChatShelf (对话集) and import the chat titles currently visible to your tools.'));
   const list = JSON.parse(run(cli,['plugin','list','--json'],env));
   assert(list.installed.some(plugin=>plugin.pluginId === 'chat-shelf@pakco-chat-shelf' && plugin.version === expectedVersion && plugin.enabled));
   return output;
@@ -61,6 +63,7 @@ try {
   assert(!existsSync(join(bundle,'.data')) && !existsSync(join(bundle,'.git')));
   assert(statSync(join(bundle,'Install.command')).mode & 0o111);
   assert(existsSync(join(bundle,'package-lock.json')) && !existsSync(join(source,'node_modules')));
+  for (const file of ['README.md','README.zh-CN.md','INSTALL.md','INSTALL.zh-CN.md','PRIVACY.md','PRIVACY.zh-CN.md']) assert(existsSync(join(bundle,file)),`分享包缺少文档：${file}`);
   const offline = environment('offline');
   assert(!spawnSync('/usr/bin/which',['node'],{env:offline}).stdout?.length,'模拟新电脑不应依赖 PATH 中的 Node');
   assert(!spawnSync('/usr/bin/which',['npm'],{env:offline}).stdout?.length,'模拟新电脑不应依赖 npm');

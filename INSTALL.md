@@ -1,53 +1,57 @@
-# 安装对话集免费测试版
+# Install ChatShelf (对话集)
 
-适用于 **macOS + 支持插件的 Codex 桌面客户端**。插件免费，客户端本身的账户与使用条件另计。
+[简体中文](INSTALL.zh-CN.md) · Version **0.9.6-beta.2**
 
-## 推荐：下载完整包
+## 30-second quick start
 
-1. 从 [0.9.6-beta.1 发布页](https://github.com/pakco77/chat-shelf/releases/tag/v0.9.6-beta.1) 下载 **chat-shelf-0.9.6-beta.1-macos.zip**。
-2. 解压，将整个文件夹放在你打算保留的位置，例如「文稿」。这个文件夹是后续更新的安装来源。
-3. 双击文件夹中的 **Install.command**。终端窗口会检查已有运行环境、登记插件源、安装插件并检查是否启用。
-4. 看到「安装完成」后，回到 Codex，**新建一个对话**，发送：
+For a Mac with a **Codex desktop app that supports plugins**. This is a quick guide; downloading the package and importing your first chats may take longer.
 
-   > 打开对话集，把当前可见的聊天标题收录进去
+1. [Download the complete macOS ZIP](https://github.com/pakco77/chat-shelf/releases/download/v0.9.6-beta.2/chat-shelf-0.9.6-beta.2-macos.zip).
+2. Unzip it and keep the whole folder somewhere permanent, such as Documents.
+3. Double-click **Install.command**. When the installer prints **Installation complete**, return to Codex.
+4. Start a **new Codex chat** and send:
 
-5. 收录后在「待收纳」里选择对话，归入文件夹或项目。需要末段预览时，可以继续说“请补齐这些对话的最后可见消息预览”。
+   > Open ChatShelf (对话集) and import the chat titles currently visible to your tools.
 
-完整包自带插件依赖。安装器优先使用客户端提供的 Node 和 Codex 命令行程序；不用另外安装 Codex CLI。若你的客户端不带兼容的 Node 环境，安装器会明确提示安装 Node 18+，不会静默下载运行环境。
+Your imported chats appear in **Inbox**. Open a chat's preview and use **Move to** to place it in a folder or project. To add previews, ask: “Please import the last visible message previews for these chats.”
 
-安装器不需要管理员权限，不会关闭客户端、改动原始聊天或清空已有的 ChatShelf 数据。插件自身不收取费用，也不索要模型 API Key。
+The complete package includes the plugin's dependencies. The installer first looks for the Node runtime and Codex command-line program provided by the desktop app. If no compatible Node is available, it asks you to install Node 18 or later; it does not silently download a runtime. Keep the extracted folder because it remains the registered installation source.
 
-## 如果双击没有打开
+ChatShelf is free. Your host client's account and usage terms still apply. Installation needs no administrator privileges, does not close the client, and preserves original chats and existing ChatShelf data. The plugin does not ask for a model API key.
 
-可把解压后的整个文件夹交给 Codex，并发送：
+## If double-clicking does not open the installer
 
-> 请阅读此文件夹的 README.md 和 INSTALL.md，检查 Install.command 后执行本地安装。保留已有数据，安装后说明结果。
+Give the extracted folder to Codex and ask:
 
-也可打开「终端」，输入 `zsh `（末尾留一个空格），把 **Install.command** 拖入终端窗口，再按回车。这样使用系统自带的解释器执行你下载的脚本；不需要删除系统安全属性。
+> Read this folder's README.md and INSTALL.md, inspect Install.command, then run the local installer. Preserve existing data and report the installation result.
 
-## 如果打开后还是空的
+You can also open Terminal, type `zsh ` with a trailing space, drag **Install.command** into the window, and press Return. This uses the system's interpreter to run the downloaded script; removing macOS security attributes is unnecessary.
 
-- 插件从空索引开始，不会携带开发者的聊天记录。
-- 当前 Codex 对话需要有聊天列表工具，才能应你的要求收录可见标题；这不保证全量历史。
-- 若宿主没有提供工具，在对话集选择「导入对话」，使用自己导出的 ChatGPT `conversations.json` 或对话索引 JSON。
-- 「同步未连接」不妨碍手动导入、整理和 macOS Codex 原生打开。后台同步和 ChatGPT 原生定位在本测试版中仍未接通。
-- 安装后仍看不到插件时，先开一个新对话；必要时退出并重新打开客户端。
+## If the shelf is still empty
 
-## 常见安装提示
+- The package starts with an empty index. It includes no developer chat history.
+- The current Codex chat needs access to the host's chat-list tool to import visible titles. Its scope may cover only part of your history.
+- If that tool is unavailable, choose **More → Import chats** and select your own ChatGPT `conversations.json` export or an index JSON file.
+- **Sync disconnected** does not prevent manual import, organization, or native opening of Codex chats on macOS. Background sync and native ChatGPT navigation are not connected in this beta.
+- If the plugin is missing after installation, start a new chat first. Quit and reopen the client if needed.
 
-| 提示 | 处理方式 |
+For Codex chats, **Sent to the desktop client** means macOS accepted the request. Loading the original chat is handled by the client and requires access to that record.
+
+## Installation messages
+
+| Message | What to do |
 | --- | --- |
-| 没有找到 Codex 客户端 | 先安装并打开桌面客户端；自定义位置可让 Codex 代为安装 |
-| 需要 Node 18 或以上版本 | 更新客户端，或安装仍受支持的 Node LTS 后重试 |
-| 源码包需要 npm | 改用发布页带依赖的 macOS ZIP，而不是 Source code ZIP |
-| 运行依赖不完整 | 重新下载完整包、解压，再运行安装器 |
-| 插件已安装但没有启用 | 在客户端插件设置中启用「对话集」 |
+| Codex client not found | Install and open the desktop app. For a custom app location, ask Codex to help with installation. |
+| Node 18 or later required | Update the client, or install a supported Node LTS release and retry. |
+| npm required for the source package | Use the complete macOS ZIP from the release page instead of GitHub's automatically generated Source code ZIP. |
+| Runtime dependencies incomplete | Download the complete package again, unzip it, and rerun the installer. |
+| Plugin installed but not enabled | Enable 对话集 in the client's plugin settings. |
 
-安装不会把登录凭据写入发布包。反馈错误时，提供原始提示即可；请勿上传聊天备份或连接会话文件。
+When reporting an error, share the message and reproduction steps. Remove private details, and do not upload chat backups or connection-session files.
 
-## 从源码安装
+## Install from source
 
-开发者可以使用 Node 18+、npm 和 Codex 客户端：
+Developers need Node 18+, npm, and a compatible Codex desktop client:
 
 ```sh
 git clone https://github.com/pakco77/chat-shelf.git
@@ -56,10 +60,12 @@ npm ci --ignore-scripts
 zsh Install.command
 ```
 
-安装器若发现依赖缺失，会在这个显式安装步骤调用 `npm ci`。日常插件启动不会联网安装依赖。
+If dependencies are missing, the explicit installation step runs `npm ci` with lifecycle scripts disabled. Normal plugin startup does not download dependencies.
 
-## 更新和卸载
+## Update or uninstall
 
-更新前在「更多 → 保存备份」保存整理状态。解压新版完整包并运行它的安装器，版本缓存更新、数据目录保留。新的解压目录要继续保留。
+Before updating, choose **More → Save backup**. Unzip the new complete package and run its installer. The plugin version updates while your data directory remains intact. Keep the new extracted folder.
 
-卸载在客户端插件管理中进行。默认 `~/Library/Application Support/ChatShelf/` 数据目录不会随卸载自动删除；重新安装可以继续使用。如果希望清除数据，先确认备份后自行处理这个目录。
+Uninstall or disable ChatShelf in the client's plugin settings. The default data directory, `~/Library/Application Support/ChatShelf/`, is retained so a later installation can use it again. To remove your local data, confirm you have a backup before deleting that directory yourself.
+
+Read [Privacy and data](PRIVACY.md) for what the plugin stores and how host tools handle imported content.
