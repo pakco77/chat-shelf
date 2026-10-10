@@ -1,0 +1,20 @@
+{
+  "name": "pakco-chat-shelf",
+  "interface": {
+    "displayName": "Pakco 对话集"
+  },
+  "plugins": [
+    {
+      "name": "chat-shelf",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

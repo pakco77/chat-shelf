@@ -1,0 +1,24 @@
+{
+  "name": "chat-shelf",
+  "version": "0.9.6-beta.1",
+  "description": "把 ChatGPT 与 Codex 对话按项目收成一本本集子，快速找回并继续原对话。",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "对话集",
+    "shortDescription": "按项目找回 ChatGPT 与 Codex 对话。",
+    "developerName": "pakco",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "brandColor": "#C23B22",
+    "defaultPrompt": [
+      "打开对话集",
+      "更新对话标题索引"
+    ],
+    "logo": "./assets/icon.svg",
+    "composerIcon": "./assets/sidebar-icon.svg"
+  }
+}

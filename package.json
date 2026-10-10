@@ -1,0 +1,22 @@
+{
+  "name": "chat-shelf",
+  "version": "0.9.6-beta.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node self-check.mjs",
+    "demo": "node scripts/demo.mjs",
+    "mcp": "node server.mjs --stdio",
+    "package": "node scripts/package.mjs",
+    "check:plugin": "node scripts/check-plugin.mjs",
+    "check:install": "node scripts/check-install.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.27.1",
+    "zod": "4.3.6"
+  }
+}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>对话集</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body data-mode="loading">
+<div class="workspace">
+  <header class="topbar">
+    <button class="brand" data-action="home" aria-label="对话集，回到书架" data-i18n-aria-label="homeLabel"><span class="seal brand-seal" aria-hidden="true">集</span><span class="brand-name">对话集</span></button>
+    <nav class="view-tabs" aria-label="浏览方式" data-i18n-aria-label="browsing">
+      <button data-action="home" data-tab="home" data-i18n="shelf">书架</button>
+      <button data-action="recent" data-tab="recent" data-i18n="all">全部</button>
+      <button data-action="favorites" data-tab="favorites" data-i18n="favorites">常用</button>
+      <span class="tab-ink" aria-hidden="true"></span>
+    </nav>
+    <span id="demo-badge" class="demo-badge" data-i18n="demo" data-i18n-title="demoHint" title="当前是虚构的示例对话，「继续对话」不会打开真实原文" hidden>示例数据</span>
+    <label class="search">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg>
+      <input id="search" type="search" placeholder="找一段对话" data-i18n-placeholder="searchPlaceholder" data-i18n-aria-label="searchLabel" aria-label="搜索对话标题与末段" autocomplete="off" spellcheck="false">
+      <kbd>⌘K</kbd>
+    </label>
+    <details class="utility-menu top-menu"><summary aria-label="更多操作" data-i18n-aria-label="moreActions" data-i18n="more">更多</summary><div>
+      <button data-action="archived" data-i18n="archived">已归档</button>
+      <hr>
+      <button data-action="import" data-i18n="importMenu">导入对话…</button>
+      <button data-action="export" data-i18n="backup">保存备份</button>
+      <button data-action="refresh" data-i18n="syncMenu">立即同步对话</button>
+      <button data-action="about" data-i18n="about">关于对话集</button>
+    </div></details>
+  </header>
+  <main>
+    <div id="page-heading" class="page-heading"></div>
+    <div id="board" class="board" aria-busy="true"><div class="loading" role="status"><span class="seal loading-seal" aria-hidden="true">集</span><span data-i18n="loading">正在翻开对话集</span></div></div>
+    <footer class="page-foot">
+      <button id="sync-status" class="sync-status" data-action="sync-details" data-i18n-title="syncStatus" title="查看同步状态"><span data-i18n="connecting">连接客户端…</span></button>
+      <nav id="pagination" class="pagination" data-i18n-aria-label="pagination" aria-label="分页"></nav>
+      <button class="trash-dock" data-action="trash" data-i18n-title="trashHint" data-i18n-aria-label="trash" aria-label="垃圾桶" title="把对话拖到这里，或点击查看垃圾桶">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g class="trash-lid"><path d="M4 6h16M9 6V3h6v3"/></g><path class="trash-body" d="M6 7l1 14h10l1-14Z"/><path d="M10 10v7M14 10v7"/></svg>
+        <span class="trash-name"><span data-i18n="trash">垃圾桶</span> <small id="trash-count" hidden>0</small></span><span class="trash-hint" aria-hidden="true"></span>
+      </button>
+    </footer>
+  </main>
+</div>
+<div class="selection-bar" id="selection-bar" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="drop-veil" id="drop-veil" hidden><span data-i18n="importDrop">松手导入</span><small data-i18n="importTypes">conversations.json 或索引 JSON</small></div>
+<dialog id="detail" aria-labelledby="detail-title"></dialog>
+<input type="file" id="import-file" accept=".json,application/json" hidden>
+<script type="module" src="/app.js"></script>
+</body></html>
